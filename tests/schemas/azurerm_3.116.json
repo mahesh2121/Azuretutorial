@@ -1,0 +1,999 @@
+{
+ "_meta": {
+  "provider": "registry.terraform.io/hashicorp/azurerm",
+  "provider_version": "3.116.0",
+  "source": "Curated from the official azurerm 3.116.0 resource documentation. Used by tests/contract/test_provider_schema.py as the provider contract for every resource this repository manages.",
+  "notes": [
+   "arguments  = configurable arguments documented for the resource",
+   "blocks     = nested block type -> documented arguments of that block",
+   "required   = arguments Azure/Terraform require to be set",
+   "exported   = computed attributes that may be read back off the resource",
+   "deprecated = arguments that must NOT be used in new code (tests enforce this)"
+  ]
+ },
+ "resources": {
+  "azurerm_container_registry": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "location",
+    "sku",
+    "admin_enabled",
+    "tags",
+    "georeplications",
+    "network_rule_set",
+    "public_network_access_enabled",
+    "quarantine_policy_enabled",
+    "retention_policy",
+    "trust_policy",
+    "zone_redundancy_enabled",
+    "export_policy_enabled",
+    "identity",
+    "encryption",
+    "anonymous_pull_enabled",
+    "data_endpoint_enabled",
+    "network_rule_bypass_option"
+   ],
+   "blocks": {
+    "georeplications": [
+     "location",
+     "regional_endpoint_enabled",
+     "zone_redundancy_enabled",
+     "tags"
+    ],
+    "network_rule_set": [
+     "default_action",
+     "ip_rule",
+     "virtual_network"
+    ],
+    "ip_rule": [
+     "action",
+     "ip_range"
+    ],
+    "virtual_network": [
+     "subnet_id",
+     "action"
+    ],
+    "retention_policy": [
+     "days",
+     "enabled"
+    ],
+    "trust_policy": [
+     "enabled"
+    ],
+    "identity": [
+     "type",
+     "identity_ids"
+    ],
+    "encryption": [
+     "key_vault_key_id",
+     "identity_client_id"
+    ]
+   },
+   "required": [
+    "name",
+    "resource_group_name",
+    "location",
+    "sku"
+   ],
+   "exported": [
+    "id",
+    "login_server",
+    "admin_username",
+    "admin_password",
+    "identity",
+    "sku",
+    "name",
+    "location",
+    "resource_group_name",
+    "tags"
+   ],
+   "deprecated": [
+    "georeplication"
+   ]
+  },
+  "azurerm_container_registry_scope_map": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "container_registry_name",
+    "actions",
+    "description"
+   ],
+   "blocks": {},
+   "required": [
+    "name",
+    "resource_group_name",
+    "container_registry_name",
+    "actions"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "actions",
+    "description",
+    "resource_group_name",
+    "container_registry_name"
+   ],
+   "deprecated": []
+  },
+  "azurerm_container_registry_token": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "container_registry_name",
+    "scope_map_id",
+    "enabled"
+   ],
+   "blocks": {},
+   "required": [
+    "name",
+    "resource_group_name",
+    "container_registry_name",
+    "scope_map_id"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "enabled",
+    "scope_map_id",
+    "resource_group_name",
+    "container_registry_name"
+   ],
+   "deprecated": []
+  },
+  "azurerm_container_group": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "location",
+    "sku",
+    "identity",
+    "init_container",
+    "container",
+    "os_type",
+    "dns_config",
+    "diagnostics",
+    "dns_name_label",
+    "dns_name_label_reuse_policy",
+    "exposed_port",
+    "ip_address_type",
+    "key_vault_key_id",
+    "key_vault_user_assigned_identity_id",
+    "subnet_ids",
+    "image_registry_credential",
+    "priority",
+    "restart_policy",
+    "zones",
+    "tags",
+    "network_profile_id"
+   ],
+   "blocks": {
+    "identity": [
+     "type",
+     "identity_ids"
+    ],
+    "init_container": [
+     "name",
+     "image",
+     "environment_variables",
+     "secure_environment_variables",
+     "commands",
+     "volume",
+     "security"
+    ],
+    "container": [
+     "name",
+     "image",
+     "cpu",
+     "memory",
+     "cpu_limit",
+     "memory_limit",
+     "ports",
+     "environment_variables",
+     "secure_environment_variables",
+     "readiness_probe",
+     "liveness_probe",
+     "commands",
+     "volume",
+     "security"
+    ],
+    "exposed_port": [
+     "port",
+     "protocol"
+    ],
+    "diagnostics": [
+     "log_analytics"
+    ],
+    "log_analytics": [
+     "log_type",
+     "workspace_id",
+     "workspace_key",
+     "metadata"
+    ],
+    "image_registry_credential": [
+     "server",
+     "username",
+     "password",
+     "user_assigned_identity_id"
+    ],
+    "ports": [
+     "port",
+     "protocol"
+    ],
+    "volume": [
+     "name",
+     "mount_path",
+     "read_only",
+     "empty_dir",
+     "storage_account_name",
+     "storage_account_key",
+     "share_name",
+     "git_repo",
+     "secret"
+    ],
+    "git_repo": [
+     "url",
+     "directory",
+     "revision"
+    ],
+    "readiness_probe": [
+     "exec",
+     "http_get",
+     "initial_delay_seconds",
+     "period_seconds",
+     "failure_threshold",
+     "success_threshold",
+     "timeout_seconds"
+    ],
+    "liveness_probe": [
+     "exec",
+     "http_get",
+     "initial_delay_seconds",
+     "period_seconds",
+     "failure_threshold",
+     "success_threshold",
+     "timeout_seconds"
+    ],
+    "http_get": [
+     "path",
+     "port",
+     "scheme",
+     "http_headers"
+    ],
+    "dns_config": [
+     "nameservers",
+     "search_domains",
+     "options"
+    ],
+    "security": [
+     "privilege_enabled"
+    ]
+   },
+   "required": [
+    "name",
+    "resource_group_name",
+    "location",
+    "os_type",
+    "container"
+   ],
+   "exported": [
+    "id",
+    "ip_address",
+    "fqdn",
+    "identity",
+    "name",
+    "location",
+    "os_type",
+    "tags",
+    "restart_policy",
+    "ip_address_type"
+   ],
+   "deprecated": [
+    "network_profile_id"
+   ]
+  },
+  "azurerm_notification_hub_namespace": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "location",
+    "namespace_type",
+    "sku_name",
+    "enabled",
+    "tags"
+   ],
+   "blocks": {},
+   "required": [
+    "name",
+    "resource_group_name",
+    "location",
+    "namespace_type",
+    "sku_name"
+   ],
+   "exported": [
+    "id",
+    "servicebus_endpoint",
+    "name",
+    "location",
+    "sku_name",
+    "namespace_type",
+    "enabled",
+    "tags",
+    "resource_group_name"
+   ],
+   "deprecated": []
+  },
+  "azurerm_notification_hub": {
+   "arguments": [
+    "name",
+    "namespace_name",
+    "resource_group_name",
+    "location",
+    "apns_credential",
+    "gcm_credential",
+    "tags"
+   ],
+   "blocks": {
+    "apns_credential": [
+     "application_mode",
+     "bundle_id",
+     "key_id",
+     "team_id",
+     "token"
+    ],
+    "gcm_credential": [
+     "api_key"
+    ]
+   },
+   "required": [
+    "name",
+    "namespace_name",
+    "resource_group_name",
+    "location"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "location",
+    "namespace_name",
+    "resource_group_name",
+    "tags"
+   ],
+   "deprecated": [
+    "apns_certificate",
+    "wns_credential",
+    "registration_ttl",
+    "authorization_rule",
+    "aps_credential"
+   ]
+  },
+  "azurerm_monitor_diagnostic_setting": {
+   "arguments": [
+    "name",
+    "target_resource_id",
+    "eventhub_name",
+    "eventhub_authorization_rule_id",
+    "log",
+    "enabled_log",
+    "log_analytics_workspace_id",
+    "metric",
+    "storage_account_id",
+    "log_analytics_destination_type",
+    "partner_solution_id"
+   ],
+   "blocks": {
+    "log": [
+     "category",
+     "category_group",
+     "retention_policy",
+     "enabled"
+    ],
+    "enabled_log": [
+     "category",
+     "category_group",
+     "retention_policy"
+    ],
+    "metric": [
+     "category",
+     "retention_policy",
+     "enabled"
+    ],
+    "retention_policy": [
+     "enabled",
+     "days"
+    ]
+   },
+   "required": [
+    "name",
+    "target_resource_id"
+   ],
+   "exported": [
+    "id"
+   ],
+   "deprecated": [
+    "log",
+    "log_category",
+    "metric_category",
+    "metric_enabled",
+    "retention_policy"
+   ]
+  },
+  "azurerm_private_endpoint": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "location",
+    "subnet_id",
+    "custom_network_interface_name",
+    "private_dns_zone_group",
+    "private_service_connection",
+    "ip_configuration",
+    "tags"
+   ],
+   "blocks": {
+    "private_dns_zone_group": [
+     "name",
+     "private_dns_zone_ids"
+    ],
+    "private_service_connection": [
+     "name",
+     "is_manual_connection",
+     "private_connection_resource_id",
+     "private_connection_resource_alias",
+     "subresource_names",
+     "request_message"
+    ],
+    "ip_configuration": [
+     "name",
+     "private_ip_address",
+     "subresource_name",
+     "member_name"
+    ]
+   },
+   "required": [
+    "name",
+    "resource_group_name",
+    "location",
+    "subnet_id",
+    "private_service_connection"
+   ],
+   "exported": [
+    "id",
+    "network_interface",
+    "custom_dns_configs",
+    "private_dns_zone_configs",
+    "ip_configuration",
+    "fqdn",
+    "name",
+    "tags",
+    "location",
+    "resource_group_name",
+    "subnet_id"
+   ],
+   "deprecated": []
+  },
+  "azurerm_role_assignment": {
+   "arguments": [
+    "name",
+    "scope",
+    "role_definition_id",
+    "role_definition_name",
+    "principal_id",
+    "principal_type",
+    "condition",
+    "condition_version",
+    "delegated_managed_identity_resource_id",
+    "description",
+    "skip_service_principal_aad_check"
+   ],
+   "blocks": {},
+   "required": [
+    "scope",
+    "principal_id"
+   ],
+   "exported": [
+    "id",
+    "role_definition_id",
+    "role_definition_name",
+    "principal_id",
+    "scope"
+   ],
+   "deprecated": []
+  },
+  "azurerm_management_lock": {
+   "arguments": [
+    "name",
+    "lock_level",
+    "notes",
+    "resource_name",
+    "resource_group_name",
+    "type"
+   ],
+   "blocks": {},
+   "required": [
+    "name",
+    "lock_level",
+    "resource_name",
+    "type"
+   ],
+   "exported": [
+    "id"
+   ],
+   "deprecated": []
+  },
+  "azurerm_resource_group": {
+   "arguments": [
+    "name",
+    "location",
+    "managed_by",
+    "tags"
+   ],
+   "blocks": {},
+   "required": [
+    "name",
+    "location"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "location",
+    "tags"
+   ],
+   "deprecated": []
+  },
+  "azurerm_user_assigned_identity": {
+   "arguments": [
+    "name",
+    "location",
+    "resource_group_name",
+    "tags"
+   ],
+   "blocks": {},
+   "required": [
+    "name",
+    "location",
+    "resource_group_name"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "principal_id",
+    "client_id",
+    "location",
+    "tags",
+    "resource_group_name"
+   ],
+   "deprecated": []
+  },
+  "azurerm_log_analytics_workspace": {
+   "arguments": [
+    "name",
+    "location",
+    "resource_group_name",
+    "sku",
+    "retention_in_days",
+    "daily_quota_gb",
+    "internet_ingestion_enabled",
+    "local_authentication_enabled",
+    "public_network_access_enabled",
+    "workspace_reservation",
+    "tags"
+   ],
+   "blocks": {
+    "identity": [
+     "type",
+     "identity_ids"
+    ]
+   },
+   "required": [
+    "name",
+    "location",
+    "resource_group_name"
+   ],
+   "exported": [
+    "id",
+    "primary_shared_key",
+    "secondary_shared_key",
+    "portal_url",
+    "name",
+    "sku",
+    "location",
+    "retention_in_days",
+    "tags"
+   ],
+   "deprecated": [
+    "solution_map"
+   ]
+  },
+  "azurerm_virtual_network": {
+   "arguments": [
+    "name",
+    "address_space",
+    "location",
+    "resource_group_name",
+    "dns_servers",
+    "bgp_community",
+    "tags"
+   ],
+   "blocks": {
+    "subnet": [
+     "name",
+     "address_prefixes",
+     "network_security_group_id",
+     "route_table_id",
+     "service_endpoints",
+     "private_endpoint_network_policies_enabled",
+     "delegation"
+    ]
+   },
+   "required": [
+    "name",
+    "address_space",
+    "location",
+    "resource_group_name"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "guid",
+    "address_space",
+    "location",
+    "tags",
+    "resource_group_name"
+   ],
+   "deprecated": [
+    "subnet",
+    "vnet_security_type"
+   ]
+  },
+  "azurerm_subnet": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "virtual_network_name",
+    "address_prefixes",
+    "network_security_group_id",
+    "route_table_id",
+    "service_endpoints",
+    "service_endpoint_policy_ids",
+    "private_endpoint_network_policies_enabled",
+    "private_link_service_network_policies_enabled",
+    "enforce_private_link_endpoint_network_policies",
+    "enforce_private_link_service_network_policies"
+   ],
+   "blocks": {
+    "delegation": [
+     "name",
+     "service_delegation"
+    ],
+    "service_delegation": [
+     "name",
+     "actions"
+    ]
+   },
+   "required": [
+    "name",
+    "resource_group_name",
+    "virtual_network_name",
+    "address_prefixes"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "address_prefixes",
+    "address_prefix",
+    "network_security_group_id"
+   ],
+   "deprecated": [
+    "address_prefix",
+    "enforce_private_link_endpoint_network_policies",
+    "enforce_private_link_service_network_policies"
+   ]
+  },
+  "azurerm_network_security_group": {
+   "arguments": [
+    "name",
+    "location",
+    "resource_group_name",
+    "security_rule",
+    "tags"
+   ],
+   "blocks": {
+    "security_rule": [
+     "name",
+     "priority",
+     "direction",
+     "access",
+     "protocol",
+     "source_port_range",
+     "source_port_ranges",
+     "destination_port_range",
+     "destination_port_ranges",
+     "source_address_prefix",
+     "source_address_prefixes",
+     "destination_address_prefix",
+     "destination_address_prefixes"
+    ]
+   },
+   "required": [
+    "name",
+    "location",
+    "resource_group_name"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "location",
+    "tags",
+    "resource_group_name"
+   ],
+   "deprecated": [
+    "network_security_rule"
+   ]
+  },
+  "azurerm_subnet_network_security_group_association": {
+   "arguments": [
+    "subnet_id",
+    "network_security_group_id"
+   ],
+   "blocks": {},
+   "required": [
+    "subnet_id",
+    "network_security_group_id"
+   ],
+   "exported": [
+    "id"
+   ],
+   "deprecated": []
+  },
+  "azurerm_private_dns_zone": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "soa_record",
+    "tags"
+   ],
+   "blocks": {
+    "soa_record": [
+     "email",
+     "host_name",
+     "maximum_vanity_ttl",
+     "name",
+     "refresh_timeout",
+     "retry_timeout",
+     "expire_time",
+     "ttl"
+    ]
+   },
+   "required": [
+    "name",
+    "resource_group_name"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "soa_record",
+    "tags",
+    "resource_group_name",
+    "max_number_of_record_sets",
+    "max_number_of_virtual_network_links",
+    "max_number_of_virtual_network_links_with_registration"
+   ],
+   "deprecated": [
+    "vnet_review",
+    "auto_registration"
+   ]
+  },
+  "azurerm_private_dns_zone_virtual_network_link": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "private_dns_zone_name",
+    "virtual_network_id",
+    "registration_enabled",
+    "tags"
+   ],
+   "blocks": {},
+   "required": [
+    "name",
+    "resource_group_name",
+    "private_dns_zone_name",
+    "virtual_network_id"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "etag",
+    "tags",
+    "registration_enabled",
+    "private_dns_zone_name",
+    "resource_group_name",
+    "virtual_network_id"
+   ],
+   "deprecated": []
+  },
+  "azurerm_storage_account": {
+   "arguments": [
+    "name",
+    "resource_group_name",
+    "location",
+    "account_tier",
+    "account_replication_type",
+    "account_kind",
+    "access_tier",
+    "enable_https_traffic_only",
+    "min_tls_version",
+    "allow_blob_public_access",
+    "shared_key_access_enabled",
+    "public_network_access_enabled",
+    "network_rules",
+    "tags",
+    "azure_files_authentication",
+    "large_file_shares_enabled"
+   ],
+   "blocks": {
+    "network_rules": [
+     "bypass",
+     "ip_rules",
+     "virtual_network_subnet_ids",
+     "default_action"
+    ],
+    "azure_files_authentication": [
+     "directory_type"
+    ]
+   },
+   "required": [
+    "name",
+    "resource_group_name",
+    "location",
+    "account_tier",
+    "account_replication_type"
+   ],
+   "exported": [
+    "id",
+    "primary_access_key",
+    "secondary_access_key",
+    "primary_blob_endpoint",
+    "primary_file_endpoint",
+    "primary_queue_endpoint",
+    "primary_web_endpoint",
+    "name",
+    "location",
+    "tags"
+   ],
+   "deprecated": [
+    "enable_https_traffic_only",
+    "queue_properties",
+    "custom_domain",
+    "identity",
+    "identity_ids",
+    "identity_type"
+   ]
+  },
+  "azurerm_storage_share": {
+   "arguments": [
+    "name",
+    "storage_account_name",
+    "quota",
+    "access_tier",
+    "enabled_protocol",
+    "metadata",
+    "resource_manager_delete_retention_policy"
+   ],
+   "blocks": {
+    "resource_manager_delete_retention_policy": [
+     "days"
+    ]
+   },
+   "required": [
+    "name",
+    "storage_account_name"
+   ],
+   "exported": [
+    "id",
+    "name",
+    "url",
+    "quota",
+    "metadata",
+    "access_tier"
+   ],
+   "deprecated": []
+  },
+  "azurerm_key_vault_secret": {
+   "arguments": [
+    "name",
+    "key_vault_id",
+    "value",
+    "content_type",
+    "expiration_date",
+    "not_before_date",
+    "tags"
+   ],
+   "blocks": {},
+   "required": [
+    "name",
+    "key_vault_id",
+    "value"
+   ],
+   "exported": [
+    "id",
+    "value",
+    "version",
+    "versionless_id",
+    "resource_id",
+    "name"
+   ],
+   "deprecated": []
+  }
+ },
+ "data_sources": {
+  "azurerm_client_config": {
+   "arguments": [],
+   "exported": [
+    "client_id",
+    "object_id",
+    "subscription_id",
+    "tenant_id",
+    "skip_provider_registration"
+   ]
+  },
+  "azurerm_log_analytics_workspace": {
+   "arguments": [
+    "name",
+    "resource_group_name"
+   ],
+   "exported": [
+    "id",
+    "portal_url",
+    "primary_shared_key",
+    "retention_in_days",
+    "sku",
+    "tags",
+    "location"
+   ]
+  },
+  "azurerm_subnet": {
+   "arguments": [
+    "name",
+    "virtual_network_name",
+    "resource_group_name"
+   ],
+   "exported": [
+    "id",
+    "address_prefix",
+    "address_prefixes",
+    "network_security_group_id"
+   ]
+  },
+  "azurerm_private_dns_zone": {
+   "arguments": [
+    "name",
+    "resource_group_name"
+   ],
+   "exported": [
+    "id",
+    "max_number_of_record_sets",
+    "name",
+    "resource_group_name",
+    "soa_record",
+    "tags"
+   ]
+  },
+  "azurerm_role_definition": {
+   "arguments": [
+    "name",
+    "role_definition_id",
+    "scope"
+   ],
+   "exported": [
+    "id",
+    "assignable_scopes",
+    "description",
+    "permissions",
+    "role_definition_resource_id",
+    "type"
+   ]
+  }
+ }
+}

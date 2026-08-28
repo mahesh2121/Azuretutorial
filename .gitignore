@@ -1,0 +1,61 @@
+# ─── Terraform ────────────────────────────────────────────────────
+.terraform/
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfplan.gz
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Lock files: commit them for root stacks, ignore only the throwaway copies
+# produced by `terraform init` inside modules.
+modules/*/.terraform.lock.hcl
+
+# ─── Real credentials must never be committed ─────────────────────
+# `examples/*/environments/*.tfvars` stay tracked on purpose: they only contain
+# placeholders. Anything named like this is a mistake waiting to happen.
+*.secret.tfvars
+*.prod.secrets.tfvars
+secrets.tfvars
+secrets*.tfvars.json
+*.pem
+*.p8
+*.p12
+*.key
+*.crt
+*.mobileprovision
+.env
+.env.*
+!.env.example
+*.tfvars.json.bak
+
+# ─── Local state / backend overrides ──────────────────────────────
+terraform.tfvars
+terraform.tfvars.json
+*.auto.tfvars
+!examples/**/*.auto.tfvars
+
+# ─── Python (contract tests) ──────────────────────────────────────
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# ─── Editors / OS ─────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

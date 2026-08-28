@@ -1,0 +1,5 @@
+# Offline contract-test dependencies (no cloud SDK, no terraform needed).
+# Install with:  python3 -m pip install -r tests/requirements.txt
+python-hcl2>=4.3.4,<9
+pytest>=7.4,<9
+PyYAML>=6.0,<7 ; python_version >= "3.8"   # workflow/config validation in test_11

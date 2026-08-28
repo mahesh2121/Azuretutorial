@@ -1,0 +1,31 @@
+# Files excluded from the archive `terraform init` uploads when this repository
+# is published as a module source. Keep it aligned with .gitignore, plus anything
+# that is tooling rather than configuration.
+.git
+.github
+.gitignore
+.terraformignore
+.terraform.lock.hcl
+**/.terraform
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfplan
+__pycache__
+**/__pycache__
+*.py[cod]
+.pytest_cache
+.venv*
+venv
+tests
+tools
+docs
+Makefile
+*.md
+*.log
+.env
+.env.*
+*.pem
+*.p8
+*.key
+*.crt
+*.mobileprovision
